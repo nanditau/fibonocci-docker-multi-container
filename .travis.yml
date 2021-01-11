@@ -26,7 +26,7 @@ after_success:
 deploy:
   provider: elasticbeanstalk
   region: 'us-east-2'
-  app: 'fibonocci-docker-multi-container-'
+  app: 'fibonocci-docker-multi-container'
   env: 'FibonocciDockerMultiContainer-env'
   bucket_name: 'elasticbeanstalk-us-east-2-309709001773'
   bucket_path: 'FibonocciDockerMultiContainer'
