@@ -3,6 +3,7 @@ language: generic
 
 services:
   - docker
+
 before_install:
   - docker build -t nandudocker1/react-test -f ./client/Dockerfile.dev ./client
 
@@ -21,3 +22,15 @@ after_success:
   - docker push nandudocker1/fibonocci-docker-multi-container-nginx
   - docker push nandudocker1/fibonocci-docker-multi-container-server
   - docker push nandudocker1/fibonocci-docker-multi-container-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'fibonocci-docker-multi-container-'
+  env: 'FibonocciDockerMultiContainer-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-309709001773'
+  bucket_path: 'FibonocciDockerMultiContainer'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
